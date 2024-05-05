@@ -1,15 +1,18 @@
 import { defineConfig } from "@pandacss/dev";
 import { createPreset } from '@park-ui/panda-preset';
+import pandaPreset from '@pandacss/preset-panda';
 
 export default defineConfig({
   // Whether to use css reset
   preflight: true,
-  presets: ["@pandacss/preset-base",
+  presets: [
+    "@pandacss/preset-base",
     createPreset({
       accentColor: 'teal',
       grayColor: 'slate',
       borderRadius: 'lg'
-    })
+    }),
+    pandaPreset
   ],
 
   // Where to look for your css declarations
@@ -20,7 +23,18 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      tokens: {
+        colors: {
+          primary: {
+            value: "#0ea5e9"
+          },
+          background: {
+            value: "#e0f2fe"
+          }
+        }
+      }
+    },
   },
   jsxFramework: "react",
   // The output directory for your css system

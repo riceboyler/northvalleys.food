@@ -4,7 +4,7 @@ import { createClient } from '~/utils/supabase/server';
 import { cookies } from 'next/headers';
 import dayjs from 'dayjs';
 import { Card, Table } from '../components/ParkUI';
-import { Flex, Grid } from '../../styled-system/jsx';
+import { Box, Flex, Grid } from '../../styled-system/jsx';
 
 type ScheduleRow = {
   date: Date;
@@ -34,7 +34,7 @@ export default async function Page() {
     truck (
       name
     )
-    `).returns<ScheduleRow[]>();
+    `).filter('date', 'gte', dayjs()).returns<ScheduleRow[]>();
 
   type ScheduleWithLocationTruck = QueryData<typeof scheduleWithLocationTruck>;
   const schedule = scheduleWithLocationTruck.data;
@@ -43,10 +43,10 @@ export default async function Page() {
 
   return (
     <>
-      <h1>Today's Trucks</h1>
+      <Box textStyle="4xl" marginBottom="8px">Today's Trucks</Box>
       <Flex direction={{ base: 'column', md: 'row' }} gap="16px" justifyContent="center" alignItems="center">
         {todaySchedule?.map((row) => (
-          <Card.Root width="sm" key={row.truck.name}>
+          <Card.Root width="sm" key={row.truck.name} border="solid 1px" borderColor="primary">
             <Card.Header>
               <Card.Title>{row.truck.name}</Card.Title>
             </Card.Header>
@@ -58,7 +58,7 @@ export default async function Page() {
         ))}
       </Flex>
 
-      <h1>Full Schedule</h1>
+      <Box textStyle="3xl" marginTop="16px">Full Schedule</Box>
       <Table.Root colorPalette="accent">
         <Table.Caption>North Valleys Food Truck Schedule</Table.Caption>
         <Table.Head>
