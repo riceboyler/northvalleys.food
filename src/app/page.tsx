@@ -46,7 +46,7 @@ export default async function Page() {
       <Box textStyle="4xl" marginBottom="8px">Today's Trucks</Box>
       <Flex direction={{ base: 'column', md: 'row' }} gap="16px" justifyContent="center" alignItems="center">
         {todaySchedule?.map((row) => (
-          <Card.Root width="sm" key={row.truck.name} border="solid 1px" borderColor="primary">
+          <Card.Root width={{ base: "xs", md: "sm" }} key={row.truck.name} border="solid 1px" borderColor="primary">
             <Card.Header>
               <Card.Title>{row.truck.name}</Card.Title>
             </Card.Header>
