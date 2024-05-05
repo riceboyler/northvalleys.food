@@ -14,7 +14,8 @@
       ],
       "rules": {
         "no-undef": "off",
-        "react/display-name": "off"
+        "react/display-name": "off",
+        "react/no-unescaped-entities": "off"
       }
     }
   ]
