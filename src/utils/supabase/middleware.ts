@@ -6,8 +6,8 @@ export const createClient = (request: NextRequest) => {
   // Create an unmodified response
   let response = NextResponse.next({
     request: {
-      headers: request.headers,
-    },
+      headers: request.headers
+    }
   });
 
   const supabase = createServerClient(
@@ -18,46 +18,53 @@ export const createClient = (request: NextRequest) => {
         get(name: string) {
           return request.cookies.get(name)?.value;
         },
-        set(name: string, value: string, options: CookieOptions) {
+        set(
+name: string, value: string, options: CookieOptions
+) {
           // If the cookie is updated, update the cookies for the request and response
           request.cookies.set({
             name,
             value,
-            ...options,
+            ...options
           });
           response = NextResponse.next({
             request: {
-              headers: request.headers,
-            },
+              headers: request.headers
+            }
           });
           response.cookies.set({
             name,
             value,
-            ...options,
+            ...options
           });
         },
-        remove(name: string, options: CookieOptions) {
+        remove(
+name: string, options: CookieOptions
+) {
           // If the cookie is removed, update the cookies for the request and response
           request.cookies.set({
             name,
             value: "",
-            ...options,
+            ...options
           });
           response = NextResponse.next({
             request: {
-              headers: request.headers,
-            },
+              headers: request.headers
+            }
           });
           response.cookies.set({
             name,
             value: "",
-            ...options,
+            ...options
           });
-        },
-      },
+        }
+      }
     },
   );
 
-  return { supabase, response };
+  return {
+ supabase,
+response 
+};
 };
 

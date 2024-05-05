@@ -1,10 +1,12 @@
 
-import { QueryResult, QueryData } from '@supabase/supabase-js';
-import { createClient } from '~/utils/supabase/server';
-import { cookies } from 'next/headers';
+import { QueryData } from '@supabase/supabase-js';
 import dayjs from 'dayjs';
+import { cookies } from 'next/headers';
+
+import { createClient } from '~/utils/supabase/server';
+
+import { Box, Flex } from '../../styled-system/jsx';
 import { Card, Table } from '../components/ParkUI';
-import { Box, Flex, Grid } from '../../styled-system/jsx';
 
 type ScheduleRow = {
   date: Date;
@@ -34,19 +36,43 @@ export default async function Page() {
     truck (
       name
     )
-    `).filter('date', 'gte', dayjs()).returns<ScheduleRow[]>();
+    `).filter(
+    'date', 'gte', dayjs()
+  ).returns<ScheduleRow[]>();
 
   type ScheduleWithLocationTruck = QueryData<typeof scheduleWithLocationTruck>;
   const schedule = scheduleWithLocationTruck.data;
 
-  const todaySchedule = schedule?.filter((row) => dayjs(row.date).isSame(dayjs(), 'day'));
+  const todaySchedule = schedule?.filter((row) => dayjs(row.date).isSame(
+    dayjs(), 'day'
+  ));
 
   return (
     <>
-      <Box textStyle="4xl" marginBottom="8px">Today's Trucks</Box>
-      <Flex direction={{ base: 'column', md: 'row' }} gap="16px" justifyContent="center" alignItems="center">
+      <Box
+        textStyle="4xl"
+        marginBottom="8px"
+      >Today's Trucks
+      </Box>
+      <Flex
+        direction={{
+          base: 'column',
+          md: 'row'
+        }}
+        gap="16px"
+        justifyContent="center"
+        alignItems="center"
+      >
         {todaySchedule?.map((row) => (
-          <Card.Root width={{ base: "xs", md: "sm" }} key={row.truck.name} border="solid 1px" borderColor="primary">
+          <Card.Root
+            width={{
+              base: "xs",
+              md: "sm"
+            }}
+            key={row.truck.name}
+            border="solid 1px"
+            borderColor="primary"
+          >
             <Card.Header>
               <Card.Title>{row.truck.name}</Card.Title>
             </Card.Header>
@@ -58,7 +84,11 @@ export default async function Page() {
         ))}
       </Flex>
 
-      <Box textStyle="3xl" marginTop="16px">Full Schedule</Box>
+      <Box
+        textStyle="3xl"
+        marginTop="16px"
+      >Full Schedule
+      </Box>
       <Table.Root colorPalette="accent">
         <Table.Caption>North Valleys Food Truck Schedule</Table.Caption>
         <Table.Head>
@@ -70,7 +100,12 @@ export default async function Page() {
         </Table.Head>
         <Table.Body>
           {schedule?.map((row) => (
-            <Table.Row fontWeight={dayjs(row.date).isSame(dayjs(), 'day') ? 'bold' : 'initial'} key={`${dayjs(row.date).format('MM/DD')} - ${row.truck.name}`}>
+            <Table.Row
+              fontWeight={dayjs(row.date).isSame(
+                dayjs(), 'day'
+              ) ? 'bold' : 'initial'}
+              key={`${dayjs(row.date).format('MM/DD')} - ${row.truck.name}`}
+            >
               <Table.Cell>{row.location?.name}</Table.Cell>
               <Table.Cell>{dayjs(row.date).format('ddd, MMM D')}<br />{row.start_time} - {row.end_time}</Table.Cell>
               <Table.Cell>{row.truck?.name}</Table.Cell>

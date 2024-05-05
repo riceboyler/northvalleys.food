@@ -1,9 +1,5 @@
 @layer reset, base, tokens, recipes, utilities;
 
-body {
-
-}
-
 a {
   text-decoration: none;
   color: "#0CF"!important;
