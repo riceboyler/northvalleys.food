@@ -51,7 +51,7 @@ export default async function Page() {
               <Card.Title>{row.truck.name}</Card.Title>
             </Card.Header>
             <Card.Body>
-              <h6>{row.start_time} til {row.end_time}</h6>
+              <h6>{row.start_time} until {row.end_time}</h6>
               {row.location.name} - {row.location.address}
             </Card.Body>
           </Card.Root>
