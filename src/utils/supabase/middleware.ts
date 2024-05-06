@@ -4,8 +4,8 @@ import { NextResponse, type NextRequest } from 'next/server';
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({
     request: {
-      headers: request.headers,
-    },
+      headers: request.headers
+    }
   });
 
   const supabase = createServerClient(
@@ -16,41 +16,45 @@ export async function updateSession(request: NextRequest) {
         get(name: string) {
           return request.cookies.get(name)?.value;
         },
-        set(name: string, value: string, options: CookieOptions) {
+        set(
+          name: string, value: string, options: CookieOptions
+        ) {
           request.cookies.set({
             name,
             value,
-            ...options,
+            ...options
           });
           response = NextResponse.next({
             request: {
-              headers: request.headers,
-            },
+              headers: request.headers
+            }
           });
           response.cookies.set({
             name,
             value,
-            ...options,
+            ...options
           });
         },
-        remove(name: string, options: CookieOptions) {
+        remove(
+          name: string, options: CookieOptions
+        ) {
           request.cookies.set({
             name,
             value: '',
-            ...options,
+            ...options
           });
           response = NextResponse.next({
             request: {
-              headers: request.headers,
-            },
+              headers: request.headers
+            }
           });
           response.cookies.set({
             name,
             value: '',
-            ...options,
+            ...options
           });
-        },
-      },
+        }
+      }
     }
   );
 

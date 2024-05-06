@@ -1,5 +1,18 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "eslint:recommended",
+    "next",
+    "next/core-web-vitals"
+  ],
+  "plugins": [
+    "@next/next",
+    "unused-imports"
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "overrides": [
     {
       "files": [
@@ -15,7 +28,142 @@
       "rules": {
         "no-undef": "off",
         "react/display-name": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "brace-style": [
+          "error",
+          "1tbs"
+        ],
+        "comma-dangle": [
+          "error",
+          "never"
+        ],
+        "function-paren-newline": [
+          "error",
+          {
+            "minItems": 2
+          }
+        ],
+        "import/order": [
+          "error",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal"
+            ],
+            "pathGroups": [
+              {
+                "pattern": "react",
+                "group": "external",
+                "position": "before"
+              },
+              {
+                "pattern": "@chtbks/*",
+                "group": "external",
+                "position": "after"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": [
+              "react"
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ],
+        "no-restricted-imports": [
+          "error",
+          {
+            "paths": [
+              "@chakra-ui/layout"
+            ]
+          }
+        ],
+        "no-unused-vars": "off",
+        "object-curly-newline": [
+          "warn",
+          {
+            "ObjectExpression": "always",
+            "ObjectPattern": {
+              "multiline": true
+            },
+            "ImportDeclaration": "never",
+            "ExportDeclaration": {
+              "multiline": true,
+              "minProperties": 3
+            }
+          }
+        ],
+        "object-property-newline": [
+          "error",
+          {
+            "allowMultiplePropertiesPerLine": false
+          }
+        ],
+        "prefer-destructuring": [
+          "error",
+          {
+            "array": false,
+            "object": true
+          },
+          {
+            "enforceForRenamedProperties": false
+          }
+        ],
+        "semi": [
+          "error",
+          "always"
+        ],
+        "jsx-quotes": [
+          1,
+          "prefer-double"
+        ],
+        "unused-imports/no-unused-imports": "error",
+        "@next/next/no-html-link-for-pages": "off",
+        "react/jsx-first-prop-new-line": [
+          "error",
+          "multiline"
+        ],
+        "react/jsx-max-props-per-line": [
+          "error",
+          {
+            "when": "always",
+            "maximum": 1
+          }
+        ],
+        "react/jsx-indent-props": [
+          0,
+          2
+        ],
+        "react/jsx-closing-bracket-location": [
+          "error",
+          "tag-aligned"
+        ],
+        "react/jsx-closing-tag-location": [
+          "error"
+        ],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error",
+        "react/jsx-wrap-multilines": [
+          "error",
+          {
+            "declaration": "parens-new-line",
+            "assignment": "parens-new-line",
+            "return": "parens-new-line",
+            "arrow": "parens-new-line",
+            "condition": "parens-new-line",
+            "logical": "parens-new-line",
+            "prop": "parens-new-line"
+          }
+        ],
+        "react/prop-types": [
+          "off"
+        ],
+        "react/self-closing-comp": [
+          "error"
+        ]
       }
     }
   ]
