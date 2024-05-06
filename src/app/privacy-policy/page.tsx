@@ -1,14 +1,16 @@
-import { Metadata } from 'next';
 import React from 'react';
-import { Box } from 'styled-system/jsx';
+
+import { Metadata } from 'next';
+
 
 export const metadata: Metadata = {
   title: "North Valleys Food Trucks | Privacy Policy",
-  description: "We'll never sell your data. We just want to help you find food trucks in the North Valleys area of Reno, NV.",
+  description: "We'll never sell your data. We just want to help you find food trucks in the North Valleys area of Reno, NV."
 };
 
 const PrivacyPolicy = () => {
-  return (<>
+  return (
+<>
     <h1>Privacy Policy of northvalleys.food</h1>
 
     <p>northvalleys.food operates the https://northvalleys.food website, which provides the ability to find food trucks near residents of the North Valleys region of Reno, NV, USA.</p>
@@ -67,7 +69,7 @@ const PrivacyPolicy = () => {
     <h2>Contact Us</h2>
 
     <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.</p>
-  </>
+</>
   );
 };
 
