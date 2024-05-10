@@ -25,7 +25,8 @@ export default async function Page() {
   const cookieStore = cookies();
   const supabase = createClient(cookieStore);
 
-  const scheduleWithLocationTruck = await supabase.from('schedule').select(`
+  const scheduleWithLocationTruck = await supabase.from('schedule')
+    .select(`
     date,
     start_time,
     end_time,
@@ -36,9 +37,18 @@ export default async function Page() {
     truck (
       name
     )
-    `).filter(
-    'date', 'gte', dayjs()
-  ).returns<ScheduleRow[]>();
+    `)
+    .filter(
+      'date', 'gte', dayjs().add(
+        -1, 'day'
+      ).endOf('day')
+    )
+    .filter(
+      'date', 'lte', dayjs().add(
+        1, 'week'
+      )
+    )
+    .order('date').returns<ScheduleRow[]>();
 
   type ScheduleWithLocationTruck = QueryData<typeof scheduleWithLocationTruck>;
   const schedule = scheduleWithLocationTruck.data;
