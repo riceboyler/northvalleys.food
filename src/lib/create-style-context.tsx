@@ -1,12 +1,10 @@
-import {
-  type ElementType,
+import {type ElementType,
   type ForwardRefExoticComponent,
   type PropsWithoutRef,
   type RefAttributes,
   createContext,
   forwardRef,
-  useContext
-} from 'react';
+  useContext} from 'react';
 
 import { cx } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
