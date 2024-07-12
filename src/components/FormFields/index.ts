@@ -1,0 +1,1 @@
+export { InputField as Input } from './Input.field';

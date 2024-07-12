@@ -1,45 +1,49 @@
-"use client";
+'use client'
 
-import type { ComponentProps } from 'react';
+import type { Assign } from '@ark-ui/react'
+import { type HTMLArkProps, ark } from '@ark-ui/react/factory'
+import { type TableVariantProps, table } from 'styled-system/recipes'
+import type { JsxStyleProps } from 'styled-system/types'
+import { createStyleContext } from '~/lib/create-style-context'
 
-import { ark } from '@ark-ui/react/factory';
+const { withProvider, withContext } = createStyleContext(table)
 
-import { styled } from 'styled-system/jsx';
-import { table } from 'styled-system/recipes';
-import { createStyleContext } from '~/lib/create-style-context';
+export interface RootProps
+  extends Assign<JsxStyleProps, HTMLArkProps<'table'>>,
+    TableVariantProps {}
+export const Root = withProvider<HTMLTableElement, RootProps>(ark.table, 'root')
 
-const { withProvider, withContext } = createStyleContext(table);
+export const Body = withContext<
+  HTMLTableSectionElement,
+  Assign<JsxStyleProps, HTMLArkProps<'tbody'>>
+>(ark.tbody, 'body')
 
-export const Root = withProvider(
-styled(ark.table), 'root'
-);
-export const Body = withContext(
-styled(ark.tbody), 'body'
-);
-export const Caption = withContext(
-styled(ark.caption), 'caption'
-);
-export const Cell = withContext(
-styled(ark.td), 'cell'
-);
-export const Footer = withContext(
-styled(ark.tfoot), 'footer'
-);
-export const Head = withContext(
-styled(ark.thead), 'head'
-);
-export const Header = withContext(
-styled(ark.th), 'header'
-);
-export const Row = withContext(
-styled(ark.tr), 'row'
-);
+export const Caption = withContext<
+  HTMLTableCaptionElement,
+  Assign<JsxStyleProps, HTMLArkProps<'caption'>>
+>(ark.caption, 'caption')
 
-export interface RootProps extends ComponentProps<typeof Root> { }
-export interface BodyProps extends ComponentProps<typeof Body> { }
-export interface CaptionProps extends ComponentProps<typeof Caption> { }
-export interface CellProps extends ComponentProps<typeof Cell> { }
-export interface FooterProps extends ComponentProps<typeof Footer> { }
-export interface HeadProps extends ComponentProps<typeof Head> { }
-export interface HeaderProps extends ComponentProps<typeof Header> { }
-export interface RowProps extends ComponentProps<typeof Row> { }
+export const Cell = withContext<HTMLTableCellElement, Assign<JsxStyleProps, HTMLArkProps<'td'>>>(
+  ark.td,
+  'cell',
+)
+
+export const Foot = withContext<
+  HTMLTableSectionElement,
+  Assign<JsxStyleProps, HTMLArkProps<'tfoot'>>
+>(ark.tfoot, 'footer')
+
+export const Head = withContext<
+  HTMLTableSectionElement,
+  Assign<JsxStyleProps, HTMLArkProps<'thead'>>
+>(ark.thead, 'head')
+
+export const Header = withContext<HTMLTableCellElement, Assign<JsxStyleProps, HTMLArkProps<'th'>>>(
+  ark.th,
+  'header',
+)
+
+export const Row = withContext<HTMLTableRowElement, Assign<JsxStyleProps, HTMLArkProps<'tr'>>>(
+  ark.tr,
+  'row',
+)
