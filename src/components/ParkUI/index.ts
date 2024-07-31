@@ -1,4 +1,4 @@
-export * as Card from './card';
+export * as Card from './primitives/card';
 export * as Table from './Table';
 export * as Drawer from './drawer';
 

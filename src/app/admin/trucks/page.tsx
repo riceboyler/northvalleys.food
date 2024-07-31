@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { redirect } from 'next/navigation';
 import { BiPlusCircle, BiX } from 'react-icons/bi';
 
 import { Box, HStack } from 'styled-system/jsx';
 import { Button, Table, Drawer, IconButton } from '~/components/ParkUI';
+import { useAuthCheck } from '~/hooks';
 import { createClient } from '~/utils/supabase/server';
 
 import { AddTruckForm } from './components/addTruck.form';
@@ -22,11 +22,7 @@ type Truck = {
 
 const TruckAdmin = async () => {
   const supabase = createClient();
-  const { data, error } = await supabase.auth.getUser();
-
-  if (error || !data?.user) {
-    redirect('/login');
-  }
+  await useAuthCheck();
 
   const { data: trucks, error: truckError } = await supabase.from('truck').select().returns<Truck[]>();
 

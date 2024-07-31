@@ -12,7 +12,7 @@
   "dependencies": {
     "@ark-ui/react": "^3.5.0",
     "@auth/supabase-adapter": "^1.0.0",
-    "@supabase/ssr": "^0.3.0",
+    "@supabase/ssr": "latest",
     "@supabase/supabase-js": "^2.43.1",
     "@tanstack/react-form": "^0.26.4",
     "@tanstack/react-table": "^8.19.2",
